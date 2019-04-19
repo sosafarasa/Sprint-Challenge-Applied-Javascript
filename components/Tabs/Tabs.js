@@ -25,9 +25,7 @@ class TabLink {
     this.cards = Array.from(this.cards).map(card => new TabCard(card));
 
     // Add a click event that invokes this.selectTab
-    this.tabElement.addEventListener("click", () => {
-      this.selectTab.();
-    });
+    this.tabElement.addEventListener("click", this.selectTab.bind(this));
   }
 
   selectTab(){
@@ -39,7 +37,7 @@ class TabLink {
     tabs.forEach(tab => tab.classList.remove("active-tab"));
 
     // Select all of the elements with the .card class on them
-    const cards = document.querySelector(".card");
+    const cards = document.querySelectorAll(".card");
 
     // Iterate through the NodeList setting the display style each one to 'none'
     cards.forEach(card => card.style.display = "none");
